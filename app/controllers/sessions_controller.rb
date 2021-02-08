@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     end
     def create
         @user = User.find_by_credentials(params[:user][:user_name], params[:user][:password])
+        #the value of the :user key has to match name from new form
         if @user
             login_user!(@user)
             redirect_to cats_url
