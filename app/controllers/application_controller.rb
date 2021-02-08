@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?
 
-    def login!(user)
+    def login_user!(user)
         session[:session_token] = user.reset_session_token!
-        #clarify why we're updating the session hash
     end
 
     def current_user
@@ -11,14 +10,21 @@ class ApplicationController < ActionController::Base
     end
 
     def logout!
-        current_user.reset_session_token! if logged_in? #why can't we just set the session token to nil--
-        #why do we need to reset it first
+        current_user.reset_session_token! if logged_in?
         session[:session_token] = nil
         @current_user = nil
     end
 
     def logged_in?
-        !!current_user 
-        #why not "current_user?"
+        !!current_user
+    end
+
+    def require_logged_in
+        redirect_to new_session_url unless logged_in?  #how does the users_url get generated?
+        
+    end
+
+    def require_logged_out
+        redirect_to cats_url if logged_in?
     end
 end

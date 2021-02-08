@@ -189,7 +189,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  x86_64-darwin-20
+  x86_64-darwin-18
 
 DEPENDENCIES
   better_errors
@@ -213,4 +213,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   2.2.7
+   2.2.2
